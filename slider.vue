@@ -44,15 +44,17 @@
 			}
 		},
 		data(){
-			return {
-				length: 0,
-				activeImage: 0
-			}
+			this.length = this.props.images.length;
+			if(length > 1)
+				setInterval(() => {
+					this.$changeImg(1);
+				}, 3000);
 		},
 		mounted(){
-			setInterval(() => {
-				this.$changeImg(1);
-			}, 3000);
+			if(length > 1)
+				setInterval(() => {
+					this.$changeImg(1);
+				}, 3000);
 		},
 		changeImg (e) {
 			console.log(e)
