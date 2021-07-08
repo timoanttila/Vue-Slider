@@ -1,6 +1,6 @@
 <template>
 	<div class="slider">
-		<template v-if="item.images.length > 1">
+		<template v-if="images.length > 1">
 			<div id="slider" class="relative">
 				<ImageBlock :item="images[activeImage]" :title="title" />
 				<div class="grid absolute top-0 left-2 h-full z-20">
