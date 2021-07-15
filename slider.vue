@@ -6,7 +6,7 @@
 				<div class="grid absolute top-0 left-2 h-full z-20">
 					<button
 						class="self-center px-3 py-1 font-bold border-none shadow-sm bg-white font-bold text-2xl rounded-md"
-						@click="$changeImg(1)"
+						@click="changeImg(1)"
 					>
 						&lsaquo;
 					</button>
@@ -14,7 +14,7 @@
 				<div class="grid absolute top-0 right-2 h-full z-20">
 					<button
 						class="self-center px-3 py-1 font-bold border-none shadow-sm bg-white font-bold text-2xl rounded-md"
-						@click="$changeImg(2)"
+						@click="changeImg(2)"
 					>
 						&rsaquo;
 					</button>
@@ -43,32 +43,32 @@
 				default: "Dataline Sport"
 			}
 		},
-		data(){
-			this.length = this.props.images.length;
-			if(length > 1)
-				setInterval(() => {
-					this.$changeImg(1);
-				}, 3000);
-		},
-		mounted(){
-			if(length > 1)
-				setInterval(() => {
-					this.$changeImg(1);
-				}, 3000);
-		},
-		changeImg (e) {
-			console.log(e)
-			if(this.length == 0) this.length = this.props.images.length;
-			if (e == 1) {
-				if (this.activeImage == 0) this.activeImage = this.length - 1;
-				else this.activeImage -= 1;
-			} else {
-				if (this.length == this.activeImage + 1) this.activeImage = 0;
-				else this.activeImage += 1;
-			}
+		data() {
 			return {
-				image: this.images[this.activeImage]
-			}
-		}
+				activeImage: 0,
+				length: 1,
+			};
+		},
+		mounted() {
+			this.length = parseInt(this.images.length);
+			if (this.length > 1)
+				setInterval(() => {
+					this.changeImg(1);
+				}, 3000);
+		},
+		methods: {
+			changeImg(e) {
+				if (e == 1) {
+					if (this.activeImage == 0) this.activeImage = this.length - 1;
+					else this.activeImage -= 1;
+				} else {
+					if (this.length == this.activeImage + 1) this.activeImage = 0;
+					else this.activeImage += 1;
+				}
+				return {
+					image: this.images[this.activeImage],
+				};
+			},
+		},
 	}
 </script>
